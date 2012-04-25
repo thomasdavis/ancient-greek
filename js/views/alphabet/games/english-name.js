@@ -8,11 +8,11 @@ define([
   var GuestbookList = Backbone.View.extend({
     el: '.alphabet-game-english-name',
     render: function () {
-      var questions = ['lowercase', 'uppercase', 'greek_name'];
-      var question = questions[Math.floor(Math.random()*3)];
+
       $(this.el).html(_.template(englishNameTemplate));
-      $('.js-question').text(this.greekAlphabet[this.currentAlphabetIndex][question]);
+
       $('.js-english-name-answer').focus();
+      this.nextQuestion();
     },
     initialize: function () {
       this.currentAlphabetIndex = 0;
@@ -24,11 +24,29 @@ define([
     checkAnswer: function () {
       if($('.js-english-name-answer').val() === this.greekAlphabet[this.currentAlphabetIndex].english_name){
         this.currentAlphabetIndex++;
-        this.render();
+        this.nextQuestion();
       } else {
-        console.log(this.greekAlphabet[this.currentAlphabetIndex].english_name);
-      }
+        
+           console.log(this.greekAlphabet[this.currentAlphabetIndex].english_name);
+        $('.js-wrong').fadeIn(300).fadeOut(300);
+      };
+      $('.js-english-name-answer').val('');
       return false;
+    },
+    nextQuestion: function () {
+            console.log($('.question-type'));
+      var questions = _.filter($('.question-type'), function(question_type) {
+        if($(question_type).attr('checked')){
+          return $(question_type).attr('value');
+        }
+      });
+      console.log(questions);
+      questions = _.map(questions, function(question) {
+          return $(question).attr('value');
+      });
+      console.log(questions);
+      var question = questions[Math.floor(Math.random()*questions.length)];
+      $('.js-question').text(this.greekAlphabet[this.currentAlphabetIndex][question]);
     }
   });
   return GuestbookList;

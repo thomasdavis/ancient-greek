@@ -15,20 +15,37 @@
     border: 1px solid #8c8c8c;
     outline: none;
   }
+  .hints {
+    font-size: 26px;
+  }
 </style>
 
 <div class="js-question question"></div>
+
+<label>Lower case</label>
+<input type="checkbox" class="question-type" value="lowercase" />
+<label>Upper case</label>
+<input type="checkbox" class="question-type" value="uppercase" />
+<label>Greek word</label>
+<input type="checkbox" class="question-type" value="greek_name" checked />
 
 <div class="answer-form-container">
   <label>English Name</label>
 
   <form class="js-english-name">
     <input type="text" class="js-english-name-answer" />
+    <span style="display: none;" class="js-wrong">Wrong</span>
   </form>
 
 </div>
 
 <h3>Hints</h3>
-<ol>
+<ol class="hints">
   <li>Spell the words out</li>
+  <li>᾿ - Smooth breathing</li>
+  <li>῾ - Rough breathing</li>
+  <li>῀ - Rise in pitch followed by a fall (circumflex/perispomenon)</li>
+  <li>` - Fall in pitch or normal pitch (grave accent)</li>
+  <li>´ - Rise in pitch (acute/oxytone)</li>
+  <li>¯ - long alphas, iotas, and upsilons (macron)</li>
 </ol>
