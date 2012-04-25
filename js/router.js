@@ -16,7 +16,7 @@ define([
     var router = new AppRouter(options);
 
 		router.on('route:defaultAction', function (actions) {
-			require(['views/dashboard/page'], function (DashboardPage) {
+			require(['views/alphabet/games/english-name'], function (DashboardPage) {
         var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
         dashboardPage.render();
       });
